@@ -4,7 +4,8 @@ const cors = require('cors')
 const helmet = require('helmet-csp')
 
 // define your routers here
-const sampleApi = require('../src/routes/sample_api.route')
+const userAuthRouter = require('../src/routes/user.auth.route')
+const addressRoute = require('../src/routes/address.route')
 
 const app = express()
 
@@ -27,7 +28,8 @@ app.use(express.urlencoded())
 app.use(cors())
 
 // router middleware starts here
-app.use('/sample', sampleApi)
+app.use('/', userAuthRouter)
+app.use('/addresses', addressRoute)
 // router middleware ends here
 
 app.listen(process.env.SERVER_PORT, () => {
